@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ATM - Prompts </title>
+</head>
+<body>
+    
+
+
+
+    <script>
+
+       // Welcoming Users 
+            let name;
+
+            do {
+            name = prompt(`Good day! Please enter your registered Middlename`);
+
+            if (name !== Number) {
+                alert(`Please enter a valid name`);
+                name = prompt(`Good day! Please enter your registered Middlename`);
+            } else {
+                break;
+            }
+
+            } while (!name);
+
+
+            alert(`Hello ${name}! Welcome to the first online ATM.
+                Amazing, right? I know! 
+                Proceed!`);
+
+
+            // Balance
+            let balance = 875_485_45;
+            // PIN
+            let pin;
+
+            do {
+            pin = prompt(`Enter 4 digit PIN to Proceed`);
+
+            if (pin.length > 4 || pin.length < 4) {
+                alert(`Invalid Pin. Please enter a 4 digit pin`);
+                pin = prompt(`Enter 4 digit PIN to Proceed`);
+            } else {
+                break;
+            }
+
+            } while (pin.length > 4);
+
+            // Displaying Options
+            let options = +prompt(`Select what you want to do below
+            1. Withdrawal
+            2. Transfer
+            3. Check Balance
+            4. Buy Airtime 
+            5. Change PIN
+            6. Other Enquiry`);
+
+            // Handling Entries
+            switch (options) {
+            case 1:
+                let amount = +prompt(`Enter Amount`);
+                if (amount > balance) {
+                alert(`Insufficient Funds!`)
+                amount;
+                } else {
+                alert(`Request Processing`);
+                alert(`Withdrawal of ${amount} was Successful!!`)
+                }
+                let over = +prompt(`Do you want to perform another transaction
+                1. Yes
+                2. No`)
+
+                if(over == 1) {
+                    alert(`Service Failure! Try again Later.`);
+                } else {
+                    alert(`Have a nice Day!!!`)
+                }
+
+                alert(`Refresh page to try other options`);
+                break;
+            case 2:
+                +prompt(`Select Bank below
+                1. Access Bank
+                2. TiideLab MFB
+                3. Zenith
+                4. UBA
+                5. KUDA
+                6. Other Banks`);
+                
+                let account = +prompt(`Enter Account Number`);
+                alert(`Confirm account below:
+                 ${account}`)
+                let transAmount = +prompt(`Enter Amount`);
+                alert(`Hurray... Transfer of ${transAmount} to ${account} was successful!!`);
+                alert(`Refresh page to try other options`);
+
+                let over2 = +prompt(`Do you want to perform another transaction
+                1. Yes
+                2. No`)
+
+                if(over2 == 1) {
+                    alert(`Service Failure! Try again Later.`);
+                } else {
+                    alert(`Have a nice Day!!!`)
+                }
+
+                alert(`Refresh page to try other options`);
+                break;
+            case 3:
+                alert(`${balance}`);
+                
+                let over3 = +prompt(`Do you want to perform another transaction
+                1. Yes
+                2. No`)
+
+                if(over3 == 1) {
+                    alert(`Service Failure! Try again Later.`);
+                } else {
+                    alert(`Have a nice Day!!!`)
+                }
+
+                alert(`Refresh page to try other options`);
+                break;
+            case 4:
+                +prompt(`Select Network
+                1. MTN
+                2. GLO
+                3. AIRTEL
+                4. 9MOBILE
+                5. Other Networks`);
+
+                let airtimeNumber = +prompt(`Enter number`);
+
+                let airtimeAmount = +prompt(`Enter Amount`);
+
+                alert(`You have successfully recharged 0${airtimeNumber}
+                Have a lovely day!!`);
+                
+                let over4 = +prompt(`Do you want to perform another transaction
+                1. Yes
+                2. No`)
+
+                if(over4 == 1) {
+                    alert(`Service Failure! Try again Later.`);
+                } else {
+                    alert(`Have a nice Day!!!`)
+                }
+
+                alert(`Refresh page to try other options`);
+                break;
+            case 5:
+                let pinChange = +prompt(`Enter new PIN`);
+                +prompt(`Confirm new PIN`);
+                alert(`Your new pin is ${pinChange}
+                Don't forget it again!!`);
+                let over5 = +prompt(`Do you want to perform another transaction
+                1. Yes
+                2. No`)
+
+                if(over5 == 1) {
+                    alert(`Service Failure! Try again Later.`);
+                } else {
+                    alert(`Have a nice Day!!!`)
+                }
+
+                alert(`Refresh page to try other options`);
+                break;
+            case 6:
+                alert(`Sorry, Service is currently unavailable`);
+                alert(`Call +234 8069487650 for further enquiries or visit nearest branch!`);
+                let over6 = +prompt(`Do you want to perform another transaction
+                1. Yes
+                2. No`)
+
+                if(over6 == 1) {
+                    alert(`Service Failure! Try again Later.`);
+                } else {
+                    alert(`Have a nice Day!!!`)
+                }
+
+                alert(`Refresh page to try other options`);
+                break;
+            default:
+                alert(`Please select an option!!`);
+                alert(`Refresh page to try other options`);
+        }
+    </script>
+</body>
+</html>
