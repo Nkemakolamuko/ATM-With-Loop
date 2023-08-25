@@ -4,190 +4,253 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ATM - Prompts </title>
+    <link rel="preload" href="V-Bank.jpg" as="image">
+    <style>
+        body {
+            background: url(V-Bank.jpg) no-repeat center center/cover;
+            height: 100vh;
+            /* display: flex;
+            justify-items: center;
+            align-items: center; */
+            /* position: relative; */
+        }
+
+        /* body::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5); 
+        } */
+
+        h1 {
+            text-align: center;
+            border: 0px solid #00fff2;
+            padding: 10px;
+            font-size: 2.5rem;
+            color: white;
+            background-color: rgba(42, 3, 58, 0.5);
+            margin-bottom: 10px;
+            border: none;
+            border-radius: 8px;
+        }
+
+        .btn {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        button {
+            width: 400px;
+            height: 100px;
+            background-color: rgba(42, 3, 58, 0.6);
+            padding: 20px;
+            cursor: pointer;
+            color: white;
+            font-size: 2rem;
+            margin-top: 470px;
+            border: 0px;
+            border-radius: 10px;
+            
+        }
+
+        button:hover {
+            background-color: rgba(42, 3, 58, 0.8);
+        }
+
+    </style>
 </head>
 <body>
+
     
+        <h1>Welcome to VAST Online ATM</h1>
+        <div class="btn">
+            <button id="startButton">Start ATM</button>
+        </div>
+
+     
 
 
 
-    <script>
 
-       // Welcoming Users 
+
+
+     <script> 
+
+        // Getting user name
+        function getValidName() {
             let name;
-
             do {
-            name = prompt(`Good day! Please enter your registered Middlename`);
-
-            if (name !== Number) {
-                alert(`Please enter a valid name`);
                 name = prompt(`Good day! Please enter your registered Middlename`);
-            } else {
-                break;
-            }
+                if (!name || !isNaN(name)) {
+                    alert(`Please enter a valid name`);
+                } else {
+                    break;
+                }
+            } while (true);
+            return name;
+        }
 
-            } while (!name);
-
-
-            alert(`Hello ${name}! Welcome to the first online ATM.
-                Amazing, right? I know! 
-                Proceed!`);
-
-
-            // Balance
-            let balance = 875_485_45;
-            // PIN
+        // Getting valid PIN
+        function getValidPIN() {
             let pin;
-
             do {
-            pin = prompt(`Enter 4 digit PIN to Proceed`);
-
-            if (pin.length > 4 || pin.length < 4) {
-                alert(`Invalid Pin. Please enter a 4 digit pin`);
                 pin = prompt(`Enter 4 digit PIN to Proceed`);
-            } else {
-                break;
-            }
+                if (pin.length !== 4) {
+                    alert(`Invalid Pin. Please enter a 4 digit pin`);
+                } else {
+                    break;
+                }
+            } while (true);
+            return pin;
+        }
 
-            } while (pin.length > 4);
-
-            // Displaying Options
-            let options = +prompt(`Select what you want to do below
+        function showMenuAndGetOption() {
+            return +prompt(`Select what you want to do below
             1. Withdrawal
             2. Transfer
             3. Check Balance
-            4. Buy Airtime 
-            5. Change PIN
+            4. Change PIN 
+            5. Buy Airtime
             6. Other Enquiry`);
+        }
 
-            // Handling Entries
-            switch (options) {
-            case 1:
-                let amount = +prompt(`Enter Amount`);
-                if (amount > balance) {
+        // Balance
+        let balance = 100_000;
+        function newBalance() {
+            let newest = balance - amount;
+            alert(`New balance is ${newest}!`);
+        }
+
+        // Another transaction 
+        function anotherTransaction() {
+            let restart = +prompt(`Do you want to perform another transaction?
+                1. Yes
+                2. No`);
+            if (restart == 1) {
+                runATM();
+            } else {
+                alert(`Have a nice Day!!!`);
+                runATM();
+            }
+        }
+
+        // Case 1
+        function case1() {
+            let amount = +prompt(`Enter Amount`);
+            if (amount > balance) {
                 alert(`Insufficient Funds!`)
-                amount;
-                } else {
+            } else {
                 alert(`Request Processing`);
                 alert(`Withdrawal of ${amount} was Successful!!`)
-                }
-                let over = +prompt(`Do you want to perform another transaction
-                1. Yes
-                2. No`)
-
-                if(over == 1) {
-                    alert(`Service Failure! Try again Later.`);
-                } else {
-                    alert(`Have a nice Day!!!`)
-                }
-
-                alert(`Refresh page to try other options`);
-                break;
-            case 2:
-                +prompt(`Select Bank below
-                1. Access Bank
-                2. TiideLab MFB
-                3. Zenith
-                4. UBA
-                5. KUDA
-                6. Other Banks`);
+            }
                 
-                let account = +prompt(`Enter Account Number`);
-                alert(`Confirm account below:
-                 ${account}`)
-                let transAmount = +prompt(`Enter Amount`);
-                alert(`Hurray... Transfer of ${transAmount} to ${account} was successful!!`);
-                alert(`Refresh page to try other options`);
-
-                let over2 = +prompt(`Do you want to perform another transaction
-                1. Yes
-                2. No`)
-
-                if(over2 == 1) {
-                    alert(`Service Failure! Try again Later.`);
-                } else {
-                    alert(`Have a nice Day!!!`)
-                }
-
-                alert(`Refresh page to try other options`);
-                break;
-            case 3:
-                alert(`${balance}`);
-                
-                let over3 = +prompt(`Do you want to perform another transaction
-                1. Yes
-                2. No`)
-
-                if(over3 == 1) {
-                    alert(`Service Failure! Try again Later.`);
-                } else {
-                    alert(`Have a nice Day!!!`)
-                }
-
-                alert(`Refresh page to try other options`);
-                break;
-            case 4:
-                +prompt(`Select Network
-                1. MTN
-                2. GLO
-                3. AIRTEL
-                4. 9MOBILE
-                5. Other Networks`);
-
-                let airtimeNumber = +prompt(`Enter number`);
-
-                let airtimeAmount = +prompt(`Enter Amount`);
-
-                alert(`You have successfully recharged 0${airtimeNumber}
-                Have a lovely day!!`);
-                
-                let over4 = +prompt(`Do you want to perform another transaction
-                1. Yes
-                2. No`)
-
-                if(over4 == 1) {
-                    alert(`Service Failure! Try again Later.`);
-                } else {
-                    alert(`Have a nice Day!!!`)
-                }
-
-                alert(`Refresh page to try other options`);
-                break;
-            case 5:
-                let pinChange = +prompt(`Enter new PIN`);
-                +prompt(`Confirm new PIN`);
-                alert(`Your new pin is ${pinChange}
-                Don't forget it again!!`);
-                let over5 = +prompt(`Do you want to perform another transaction
-                1. Yes
-                2. No`)
-
-                if(over5 == 1) {
-                    alert(`Service Failure! Try again Later.`);
-                } else {
-                    alert(`Have a nice Day!!!`)
-                }
-
-                alert(`Refresh page to try other options`);
-                break;
-            case 6:
-                alert(`Sorry, Service is currently unavailable`);
-                alert(`Call +234 8069487650 for further enquiries or visit nearest branch!`);
-                let over6 = +prompt(`Do you want to perform another transaction
-                1. Yes
-                2. No`)
-
-                if(over6 == 1) {
-                    alert(`Service Failure! Try again Later.`);
-                } else {
-                    alert(`Have a nice Day!!!`)
-                }
-
-                alert(`Refresh page to try other options`);
-                break;
-            default:
-                alert(`Please select an option!!`);
-                alert(`Refresh page to try other options`);
         }
-    </script>
-</body>
-</html>
+
+        // Case 2
+        function case2() {
+            +prompt(`Select Bank below
+                     1. Access Bank
+                     2. TiideLab MFB
+                     3. Zenith
+                     4. UBA
+                     5. KUDA
+                     6. Other Banks`);
+                
+            let account = +prompt(`Enter Account Number`);
+            alert(`Confirm account below:
+            ${account}`)
+            let transAmount = +prompt(`Enter Amount`);
+            if(transAmount > balance) {
+                alert(`Insufficient Funds`);
+            } else {
+                alert(`Hurray... Transfer of ${transAmount} to ${account} was successful!!`);
+            }
+        }
+
+        // Case 4
+        function changedPin() {
+            let pinChange = +prompt(`Enter new PIN`);
+                +prompt(`Confirm new PIN`);
+                 alert(`Your new pin is ${pinChange}
+                 Don't forget it again!!`);
+        }
+
+        // Case 5
+        function buyAirtime() {
+            +prompt(`Select Network by entering number only
+                     1. MTN
+                     2. GLO
+                     3. AIRTEL
+                     4. 9MOBILE
+                     5. Other Networks`);
+
+            let airtimeNumber = +prompt(`Enter number`);
+
+            let airtimeAmount = +prompt(`Enter Amount`);
+
+            alert(`You have successfully recharged 0${airtimeNumber}
+            Have a lovely day!!`);
+        }
+
+        // Case 6 
+        function otherEnquiry() {
+            alert(`Sorry, Service is currently unavailable`);
+            alert(`Call +234 8069487650 for further enquiries or visit nearest branch!`);
+        }
+
+        // Performing Transaction
+        function performTransaction(option) {
+            switch (option) {
+                case 1: 
+                    case1();
+                    anotherTransaction();
+                    break;
+                case 2:
+                    case2();
+                    anotherTransaction();
+                    break;
+                case 3:
+                    alert(`Your balance is ${balance}`)
+                    anotherTransaction();
+                    break;
+                case 4:
+                    changedPin();
+                    anotherTransaction();
+                    break;
+                case 5:
+                    buyAirtime();
+                    anotherTransaction();
+                    break;
+                case 6:
+                    otherEnquiry();
+                    anotherTransaction();
+                    break;
+                default:
+                    alert(`Please select a valid option!!`);
+                    runATM();
+            }
+        }
+
+        function runATM() {
+            const name = getValidName();
+            alert(`Hello ${name}! Welcome to the first online ATM. Amazing, right? I know! Proceed!`);
+            
+            const pin = getValidPIN();
+            const selectedOption = showMenuAndGetOption();
+            performTransaction(selectedOption);
+            
+        }
+
+
+        // Attach the function to the button's click event
+        document.getElementById('startButton').addEventListener('click', runATM);
+
+        // runATM();
+
+     </script>
+ </body>
+ </html> 
